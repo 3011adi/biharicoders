@@ -136,18 +136,18 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-black">
-      <header className="bg-white dark:bg-gray-800 shadow-sm">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-white">
+      <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <Link href="/" className="text-2xl font-bold text-blue-600">
             LocalPro
           </Link>
           <nav>
             <ul className="flex space-x-6">
-              <li><Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Home</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Services</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">About</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</Link></li>
+              <li><Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">Home</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Services</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</Link></li>
             </ul>
           </nav>
         </div>
@@ -155,23 +155,24 @@ export default function SearchPage() {
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white">
+          <h1 className="text-4xl font-bold text-center mb-8 text-blue-800">
             Find Local Services Near You
           </h1>
           
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-blue-100">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Service Input */}
               <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
                   What service are you looking for?
                 </label>
                 <input
                   type="text"
                   id="service"
                   placeholder="e.g. Plumber, Electrician, House Cleaning..."
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                            bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full p-3 border border-blue-200 rounded-lg 
+                            bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400
+                            transition-all"
                   value={service}
                   onChange={(e) => setService(e.target.value)}
                   required
@@ -180,7 +181,7 @@ export default function SearchPage() {
               
               {/* Popular Services Chips */}
               <div>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <p className="text-sm font-medium text-gray-700 mb-2">
                   Popular Services:
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -189,8 +190,9 @@ export default function SearchPage() {
                       key={serviceName}
                       type="button"
                       onClick={() => selectPopularService(serviceName)}
-                      className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 
-                                rounded-full text-sm hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                      className="px-4 py-2 bg-blue-50 text-blue-600 
+                                rounded-full text-sm hover:bg-blue-100 
+                                transition-colors border border-blue-100"
                     >
                       {serviceName}
                     </button>
@@ -200,7 +202,7 @@ export default function SearchPage() {
               
               {/* Location Input */}
               <div>
-                <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
                   Your Location
                 </label>
                 <div className="flex">
@@ -208,8 +210,8 @@ export default function SearchPage() {
                     type="text"
                     id="location"
                     placeholder="Enter your city or neighborhood"
-                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-l-lg 
-                              bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-blue-200 rounded-l-lg 
+                              bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     disabled={isDetectingLocation}
@@ -218,14 +220,12 @@ export default function SearchPage() {
                   <button
                     type="button"
                     onClick={getUserLocation}
-                    className={`px-4 flex items-center justify-center border border-l-0 border-gray-300 
-                              dark:border-gray-600 rounded-r-lg transition-colors
+                    className={`px-4 flex items-center justify-center border border-l-0 
+                              border-blue-200 rounded-r-lg transition-colors
                               ${isDetectingLocation 
-                                ? 'bg-gray-100 dark:bg-gray-700 cursor-wait' 
-                                : 'bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600'}`}
+                                ? 'bg-blue-50 cursor-wait' 
+                                : 'bg-white hover:bg-blue-50'}`}
                     disabled={isDetectingLocation}
-                    aria-label="Detect my location"
-                    title="Detect my location"
                   >
                     {isDetectingLocation ? (
                       <div className="animate-spin h-5 w-5 text-blue-600">
@@ -243,15 +243,16 @@ export default function SearchPage() {
                   </button>
                 </div>
                 {locationError && (
-                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{locationError}</p>
+                  <p className="mt-1 text-sm text-red-600">{locationError}</p>
                 )}
               </div>
               
               {/* Search Button */}
               <button
                 type="submit"
-                className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg
-                          transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
+                className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium 
+                          rounded-lg transition-colors focus:outline-none focus:ring-4 
+                          focus:ring-blue-200 shadow-lg hover:shadow-xl"
                 disabled={isDetectingLocation}
               >
                 Search for Local Pros
@@ -259,33 +260,46 @@ export default function SearchPage() {
             </form>
           </div>
           
-          <div className="mt-8 text-center text-gray-600 dark:text-gray-400">
-            <p>
+          <div className="mt-8 text-center text-gray-600">
+            <p className="text-lg">
               Looking for trusted local professionals? <br className="md:hidden" />
               LocalPro connects you with verified service providers in your area.
             </p>
           </div>
 
-            {/* Services Section */}
-        <div  className="mb-24">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {serviceCategories.map((service, index) => (
-              <div key={index} className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{service.name}</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {service.description}
-                </p>
-                <a href={`/services/${service.name.toLowerCase()}`} className="text-blue-600 dark:text-blue-400 font-medium hover:underline">
-                  Find a {service.name} →
-                </a>
-              </div>
-            ))}
-          </div>
+         
         </div>
 
-        </div>
+         {/* Services Section */}
+         <div className="mt-24 mb-24">
+            <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">Our Services</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {serviceCategories.map((service, index) => (
+                <div 
+                  key={index} 
+                  className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl 
+                            transition-all duration-300 border border-blue-50 
+                            hover:border-blue-200 group"
+                >
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-blue-800">{service.name}</h3>
+                  <p className="text-gray-600 mb-4">
+                    {service.description}
+                  </p>
+                  <a 
+                    href={`/services/${service.name.toLowerCase()}`} 
+                    className="text-blue-600 font-medium hover:text-blue-800 
+                              flex items-center gap-1 group-hover:gap-2 transition-all"
+                  >
+                    Find a {service.name}
+                    <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
       </main>
     </div>
   );

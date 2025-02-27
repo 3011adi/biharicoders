@@ -87,15 +87,15 @@ export default function ResultsPage() {
   }, [service, location]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white dark:bg-gray-800 shadow-sm">
+    <div className="min-h-screen bg-white">
+      <header className="bg-blue-600 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <Link href="/" className="text-2xl font-bold text-white">
             LocalPro
           </Link>
           <Link 
             href="/search" 
-            className="text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 py-2 px-4 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800/50"
+            className="text-sm bg-white/10 text-white py-2 px-4 rounded-lg hover:bg-white/20"
           >
             New Search
           </Link>
@@ -106,30 +106,30 @@ export default function ResultsPage() {
         {/* Search Summary */}
         <div className="mb-6 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">
+            <h1 className="text-2xl font-bold text-blue-900 mb-1">
               {service ? `${service} services` : "Services"} in {location || "your area"}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-blue-600">
               Showing local professionals ready to help
             </p>
           </div>
           
           {/* View toggle buttons */}
           {!isLoading && !error && results.length > 0 && (
-            <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            <div className="flex bg-blue-50 p-1 rounded-lg">
               <button 
                 onClick={() => setMapView(false)}
                 className={`px-4 py-2 text-sm rounded-md transition ${!mapView ? 
-                  'bg-white dark:bg-gray-700 shadow-sm text-blue-600 dark:text-blue-400' : 
-                  'text-gray-700 dark:text-gray-300'}`}
+                  'bg-white shadow-sm text-blue-600' : 
+                  'text-blue-700'}`}
               >
                 List
               </button>
               <button 
                 onClick={() => setMapView(true)}
                 className={`px-4 py-2 text-sm rounded-md transition ${mapView ? 
-                  'bg-white dark:bg-gray-700 shadow-sm text-blue-600 dark:text-blue-400' : 
-                  'text-gray-700 dark:text-gray-300'}`}
+                  'bg-white shadow-sm text-blue-600' : 
+                  'text-blue-700'}`}
               >
                 Map
               </button>
@@ -138,16 +138,16 @@ export default function ResultsPage() {
         </div>
         
         {/* Results Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 md:p-6">
+        <div className="bg-white rounded-xl shadow-md p-4 md:p-6">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-12">
               <div className="animate-spin w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full mb-4"></div>
-              <p className="text-gray-600 dark:text-gray-300">Searching for local professionals...</p>
+              <p className="text-blue-600">Searching for local professionals...</p>
             </div>
           ) : error ? (
             <div className="text-center py-12">
-              <p className="text-red-500 dark:text-red-400 mb-4">{error}</p>
-              <Link href="/search" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <p className="text-red-500 mb-4">{error}</p>
+              <Link href="/search" className="text-blue-600 hover:underline">
                 Return to search
               </Link>
             </div>
@@ -163,11 +163,11 @@ export default function ResultsPage() {
             // List View
             <div className="space-y-6">
               {results.map(provider => (
-                <div key={provider.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                <div key={provider.id} className="border border-blue-100 rounded-lg p-4 flex flex-col sm:flex-row hover:bg-blue-50 transition-colors">
                   <div className="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
-                    <div className="w-20 h-20 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
+                    <div className="w-20 h-20 bg-blue-100 rounded-lg overflow-hidden">
                       {/* Replace with actual Image component for production */}
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="w-full h-full flex items-center justify-center text-blue-400">
                         {provider.service[0]}
                       </div>
                     </div>
@@ -175,26 +175,26 @@ export default function ResultsPage() {
                   
                   <div className="flex-grow">
                     <div className="flex justify-between items-start">
-                      <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{provider.name}</h2>
-                      <span className="text-blue-600 dark:text-blue-400 font-medium">{provider.price}</span>
+                      <h2 className="text-lg font-semibold text-blue-900">{provider.name}</h2>
+                      <span className="text-blue-600 font-medium">{provider.price}</span>
                     </div>
                     
-                    <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                    <div className="text-sm text-blue-600 mb-1">
                       {provider.service} specialist • {provider.distance} away
                     </div>
                     
                     <div className="flex items-center mb-3">
-                      <div className="flex text-yellow-400">
+                      <div className="flex text-blue-400">
                         {"★".repeat(Math.floor(provider.rating))}
                         {provider.rating % 1 !== 0 && "☆"}
                         {"☆".repeat(5 - Math.ceil(provider.rating))}
                       </div>
-                      <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                      <span className="ml-2 text-sm text-blue-600">
                         ({provider.reviews} reviews)
                       </span>
                     </div>
                     
-                    <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <div className="text-sm text-blue-500 mb-4">
                       {provider.address}
                     </div>
                     
@@ -202,7 +202,7 @@ export default function ResultsPage() {
                       <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                         Contact
                       </button>
-                      <button className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                      <button className="px-4 py-2 border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-blue-600">
                         View Profile
                       </button>
                     </div>
